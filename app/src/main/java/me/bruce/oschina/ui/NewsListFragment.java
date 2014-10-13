@@ -8,15 +8,19 @@ import android.support.v4.content.Loader;
 import android.view.View;
 import android.widget.ListView;
 
+import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import me.bruce.oschina.BootstrapServiceProvider;
 import me.bruce.oschina.Injector;
 import me.bruce.oschina.R;
 import me.bruce.oschina.authenticator.LogoutService;
 import me.bruce.oschina.core.News;
 import me.bruce.oschina.core.NewsWrapper;
+import me.bruce.oschina.ui.cards.NewsCard;
 
 import com.github.kevinsawicki.wishlist.SingleTypeAdapter;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +28,7 @@ import javax.inject.Inject;
 
 import static me.bruce.oschina.core.Constants.Extra.NEWS_ITEM;
 
-public class NewsListFragment extends ItemListFragment<News> {
+public class NewsListFragment extends CardListFragment {
 
     @Inject protected BootstrapServiceProvider serviceProvider;
     @Inject protected LogoutService logoutService;
@@ -49,9 +53,9 @@ public class NewsListFragment extends ItemListFragment<News> {
         listView.setFastScrollEnabled(true);
         listView.setDividerHeight(0);
 
-        getListAdapter()
-                .addHeader(activity.getLayoutInflater()
-                        .inflate(R.layout.news_list_item_labels, null));
+//        getListAdapter()
+//                .addHeader(activity.getLayoutInflater()
+//                        .inflate(R.layout.news_list_item_labels, null));
     }
 
     @Override
@@ -67,17 +71,25 @@ public class NewsListFragment extends ItemListFragment<News> {
     }
 
     @Override
-    public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        final List<News> initialItems = items;
-        return new ThrowableLoader<List<News>>(getActivity(), items) {
+    public Loader<List<Card>> onCreateLoader(int id, Bundle args) {
+        final List<Card> initialItems = items;
+        return new ThrowableLoader<List<Card>>(getActivity(), items) {
 
             @Override
-            public List<News> loadData() throws Exception {
+            public List<Card> loadData() throws Exception {
                 try {
                     if (getActivity() != null) {
                         List<News> newsList = serviceProvider.getService(getActivity()).getNews();
-                        System.out.println("------------------------------------newsList: " + newsList.size());
-                        return newsList;
+                        final List<Card> cards = new ArrayList<>();
+                        for (News news : newsList) {
+                            NewsCard card = new NewsCard(getContext());
+                            card.setTitle(news.getTitle());
+                            card.setRating(0.5f);
+                            card.setSecondaryTitle(news.getAuthor());
+                            card.init();
+                            cards.add(card);
+                        }
+                        return cards;
                     } else {
                         return Collections.emptyList();
                     }
@@ -90,11 +102,6 @@ public class NewsListFragment extends ItemListFragment<News> {
                 }
             }
         };
-    }
-
-    @Override
-    protected SingleTypeAdapter<News> createAdapter(List<News> items) {
-        return new NewsListAdapter(getActivity().getLayoutInflater(), items);
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
