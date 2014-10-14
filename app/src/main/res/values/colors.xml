@@ -44,4 +44,8 @@
     <color name="dark_grey">#1f1f1f</color>
     <color name="navigation_drawer_item_separator">#c2c2c2</color>
 
+
+    <color name="timeline_item_text_color_dark">#343434</color>
+    <color name="timeline_item_text_color_gray">#7b7b7b</color>
+
 </resources>
