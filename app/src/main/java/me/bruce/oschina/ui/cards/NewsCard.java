@@ -15,7 +15,6 @@ public class NewsCard extends Card {
 
     protected TextView mTitle;
     protected TextView mSecondaryTitle;
-    protected RatingBar mRatingBar;
     protected int resourceIdThumbnail;
     protected int count;
 
@@ -25,7 +24,7 @@ public class NewsCard extends Card {
 
 
     public NewsCard(Context context) {
-        this(context, R.layout.card_layout);
+        this(context, R.layout.item_card);
     }
 
     public NewsCard(Context context, int innerLayout) {
@@ -81,21 +80,12 @@ public class NewsCard extends Card {
         //Retrieve elements
         mTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_title);
         mSecondaryTitle = (TextView) parent.findViewById(R.id.carddemo_myapps_main_inner_secondaryTitle);
-        mRatingBar = (RatingBar) parent.findViewById(R.id.carddemo_myapps_main_inner_ratingBar);
 
         if (mTitle != null)
             mTitle.setText(title);
 
         if (mSecondaryTitle != null)
             mSecondaryTitle.setText(secondaryTitle);
-
-        if (mRatingBar != null) {
-            mRatingBar.setNumStars(5);
-            mRatingBar.setMax(5);
-            mRatingBar.setStepSize(0.5f);
-            mRatingBar.setRating(rating);
-        }
-
     }
 
 
