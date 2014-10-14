@@ -15,8 +15,6 @@ public class NewsCard extends Card {
 
     protected TextView mTitle;
     protected TextView mSecondaryTitle;
-    protected int resourceIdThumbnail;
-    protected int count;
 
     protected String title;
     protected String secondaryTitle;
@@ -30,48 +28,6 @@ public class NewsCard extends Card {
     public NewsCard(Context context, int innerLayout) {
         super(context, innerLayout);
         //init();
-    }
-
-    public void init() {
-
-        //Add thumbnail
-        CardThumbnail cardThumbnail = new CardThumbnail(mContext);
-
-        if (resourceIdThumbnail==0)
-            cardThumbnail.setDrawableResource(R.drawable.ic_std_launcher);
-        else{
-            cardThumbnail.setDrawableResource(resourceIdThumbnail);
-        }
-
-        addCardThumbnail(cardThumbnail);
-
-        //Only for test, some cards have different clickListeners
-        if (count==12){
-
-            setTitle(title + " No Click");
-            setClickable(false);
-
-        }else if (count==20){
-
-            setTitle(title + " Partial Click");
-            addPartialOnClickListener(Card.CLICK_LISTENER_CONTENT_VIEW, (card, view) -> Toast.makeText(getContext(), "Partial click Listener card=" + title, Toast.LENGTH_SHORT).show());
-
-        }else{
-
-            //Add ClickListener
-            setOnClickListener((card, view) -> Toast.makeText(getContext(), "Click Listener card=" + title, Toast.LENGTH_SHORT).show());
-
-        }
-
-
-        //Swipe
-        if (count>5 && count<13){
-
-            setTitle(title + " Swipe enabled");
-            setSwipeable(true);
-            setOnSwipeListener(card -> Toast.makeText(getContext(), "Removed card=" + title, Toast.LENGTH_SHORT).show());
-        }
-
     }
 
     @Override
@@ -111,13 +67,5 @@ public class NewsCard extends Card {
 
     public void setRating(float rating) {
         this.rating = rating;
-    }
-
-    public int getResourceIdThumbnail() {
-        return resourceIdThumbnail;
-    }
-
-    public void setResourceIdThumbnail(int resourceIdThumbnail) {
-        this.resourceIdThumbnail = resourceIdThumbnail;
     }
 }

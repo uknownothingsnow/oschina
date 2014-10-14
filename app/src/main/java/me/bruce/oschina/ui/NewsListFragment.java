@@ -52,10 +52,6 @@ public class NewsListFragment extends CardListFragment {
 
         listView.setFastScrollEnabled(true);
         listView.setDividerHeight(0);
-
-//        getListAdapter()
-//                .addHeader(activity.getLayoutInflater()
-//                        .inflate(R.layout.news_list_item_labels, null));
     }
 
     @Override
@@ -86,7 +82,6 @@ public class NewsListFragment extends CardListFragment {
                             card.setTitle(news.getTitle());
                             card.setRating(0.5f);
                             card.setSecondaryTitle(news.getAuthor());
-                            card.init();
                             cards.add(card);
                         }
                         return cards;

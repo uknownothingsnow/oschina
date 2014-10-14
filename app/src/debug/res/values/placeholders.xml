@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="placeholder_text">Lorem Ipsum Dolor Sit Amet</string>
+    <string name="placeholder">Lorem Ipsum Dolor Sit Amet</string>
+    <string name="placeholder_long_text">Lorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit AmetLorem Ipsum Dolor Sit Amet</string>
 </resources>

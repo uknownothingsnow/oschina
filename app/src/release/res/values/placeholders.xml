@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="placeholder_text"></string>
+    <string name="placeholder"></string>
+    <string name="placeholder_long_text"></string>
 </resources>
