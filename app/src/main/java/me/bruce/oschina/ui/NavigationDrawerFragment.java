@@ -96,23 +96,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        drawerListView = (ListView) inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
-        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);
-            }
-        });
-        drawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_1,
-                android.R.id.text1,
-                new String[] {
-                        getString(R.string.title_home),
-                        getString(R.string.title_timer)
-                }));
-        drawerListView.setItemChecked(currentSelectedPosition, true);
-        return drawerListView;
+        return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     }
 
     public boolean isDrawerOpen() {
